@@ -42,6 +42,6 @@ io.on('connection', (socket) => {
 
 })
 
-server.listen(8080, () => {
-	console.log('server started on *:8080')
+server.listen(processs.env.PORT || 80, () => {
+	console.log('server started on *:80')
 })
