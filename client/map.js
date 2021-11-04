@@ -23,7 +23,7 @@ drawMap = (data) => {
 	for(var j = 0; j < map.length; j++) {
 		for(var i = 0; i < map[j].length; i++) {
 			if(map[j][i] == 0) {
-				ctx.fillStyle = '#444444'
+				ctx.fillStyle = '#777777'
 			}
 			else if(map[j][i] == 1) {
 				ctx.fillStyle = '#aaaaaa'
