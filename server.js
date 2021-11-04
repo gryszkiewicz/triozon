@@ -43,5 +43,5 @@ io.on('connection', (socket) => {
 })
 
 server.listen(process.env.PORT || 80, () => {
-	console.log('server started on *:80')
+	console.log('server started on *:'+process.env.PORT)
 })
