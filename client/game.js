@@ -38,16 +38,16 @@ backgroundImg.onload = () => {
 }
 
 const player = {
-	x: 5007,
-	y: 5007,
+	x: 57,
+	y: 57,
 	width: 32,
 	height: 48,
 	spriteX: 0,
 	spriteY: 0
 }
 
-var mapX = -5000
-var mapY = -5000
+var mapX = -50
+var mapY = -50
 
 
 socket.on('players', (data) => {
