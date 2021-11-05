@@ -1,6 +1,6 @@
 drawMap = (data) => {
-	for(var j = -100; j < 100; j++) {
-		for(var i = -100; i < 100; i++) {
+	for(var j = 0; j < 10000; j++) {
+		for(var i = 0; i < 10000; i++) {
 			if(i%2 == 0 && j%2 == 0) {
 				ctx.fillStyle = '#777777'
 			}
