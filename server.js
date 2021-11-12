@@ -16,6 +16,7 @@ io.on('connection', (socket) => {
 	console.log(colors.green('player (id: %s) connected'), socket.id)
 	socket.emit('id', socket.id)
 	io.emit('players', players)
+	socket.emit('msg', chat)
 
 	socket.on('disconnect', () => {
 		if(players.length == 1) {
