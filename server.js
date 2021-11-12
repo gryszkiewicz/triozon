@@ -4,14 +4,18 @@ const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
+const colors = require('colors')
 
 app.use(express.static(__dirname + '/client'))
 
 var players = []
+var chat = [['',''], ['',''], ['',''], ['',''], ['',''], ['','']]
 
 io.on('connection', (socket) => {
 	players.push([socket.id, 7, 7, 0, 0])
-	console.log('\x1b[32mplayer (id: '+socket.id+') connected')
+	console.log(colors.green('player (id: %s) connected'), socket.id)
+	socket.emit('id', socket.id)
+	io.emit('players', players)
 
 	socket.on('disconnect', () => {
 		if(players.length == 1) {
@@ -24,7 +28,17 @@ io.on('connection', (socket) => {
 				}
 			}
 		}
-		console.log('\x1b[31mplayer (id: '+socket.id+') disconnected')
+		console.log(colors.red('player (id: %s) disconnected'), socket.id)
+		io.emit('players', players)
+	})
+
+	socket.on('chat', (data) => {
+		for(var i = 1; i < 6; i++) {
+			chat[i-1] = chat[i]
+		}
+		chat[5] = [data[0], data[1]]
+		console.log(data[0]+': '+data[1])
+		io.emit('msg', chat)
 	})
 
 	socket.on('playerData', (data) => {
@@ -37,7 +51,6 @@ io.on('connection', (socket) => {
 			}
 		}
 	io.emit('players', players)
-	socket.emit('id', socket.id)
 	})
 
 })
